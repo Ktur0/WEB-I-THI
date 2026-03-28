@@ -51,11 +51,11 @@ display: flex;
 justify-content: center;
 align-items: center;
 padding: 5px 50px;
-gap: 90px;
+gap: 50px;
 background: rgba(255, 255, 255, 0.1);
 border-radius: 50px;
 min-height: 44px;
-margin-left:10%;
+margin-left:6%;
 }
 
 /* Trang chủ */
@@ -63,7 +63,7 @@ header .nav_butt{
 font-family: 'DVN - Cinzel Decorative';
 font-style: normal;
 font-weight: 700;
-font-size: 15px;
+font-size: 13px;
 color: #FFFFFF;
 text-decoration: none;
 padding: 0px 0px;   
