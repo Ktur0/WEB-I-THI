@@ -1,404 +1,134 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Stalinist+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap');
-*{
-    margin:0;
-    padding:0;
-    box-sizing: border-box;
-    font-family: 'Poppins',sans-serif
-}
-body{
-    min-width: 100vw;
-}
-/*Chỉnh header*/
-header{
-    position: fixed;
-    top:0;
-    left:0;
-    display: flex;
-    width:100%;
-    justify-content: space-between;
-    align-items: center;
-    transition: 0.6s;
-    padding: min(40px,4%) min(50px,5%);
-    z-index: 1000000;
-    background-color: rgba(0, 0, 0, 0.15);
-}
-header .logo_img{
-    height:4em;
-}
-header .Logo{
-    position: relative;
-    text-transform: uppercase;
-    font-weight: 700;
-    color:#fff;
-    text-decoration: none;
-    font-size: 1.25rem;
-    font-size:clamp(0.86rem,1.75vw,1.25rem);
-    letter-spacing: 2px;
-    transition: 0.6s;
-    text-shadow:5px 0px 5px black;
-}
-header ul{
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-header ul li{
-    position: relative;
-    list-style: none;
-}
-header ul li a{
-    position: relative;
-    margin: 0 15px;
-    text-decoration: none;
-    color:#fff;
-    letter-spacing: 2px;
-    font-weight: 500;
-    transition: 0.5s;
-    padding:0px 10px;
-    font-weight: 700;
-    text-shadow:5px 0px 5px black;
-}
-header.sticky{
-    padding: 0.5% 8%;
-    background:#173172;
-}
-header.sticky .Logo,
-header.sticky ul li a{
-    color:#fff
-}
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&display=swap');
 
-/*Css khi hoover*/
-
-header ul li a::after{
-    content: "";
-    position: absolute;
-    bottom: -10px;
-    left: 10px;
-    height: 2px;
-    width: 80%;
-    background-color: white;
-    transform: scaleX(0);          /* Ẩn đi */
-    transform-origin: left;        /* Bắt đầu từ trái */
-    transition: transform 0.3s ease;
-}
-
-header ul li a:hover::after{
-    transform: scaleX(1);
-}
-
-/*Chỉnh ảnh đầu trang*/
-.banner{
-    position: relative;
-    max-width:100%;
-    height:auto;
-    background-size: cover;
-    box-shadow: 20px 10px 5px black;
-    object-fit: cover;
-}
-
-/*Css chữ Sản phẩm*/
-.product{
-    text-align: center;
-    padding-bottom: 2%;
-    font-family: "Cabin",sans-serif;
-    font-size:3em;
-}
-
-/* Css phần ảnh tự trượt*/
-.section-header{
-    display: block;
-    margin-top: 20px;
-    position: relative;
-    text-align: center;
-}
-
-section{
-    overflow: hidden;
-    position: relative;
-}
-
-.Carousel-slider{
-    height:560px;
-    position: relative;
-    width:100%;
-    background-image: linear-gradient(to bottom, #07314b, #416a93,#07314b);
-}
-
-.Carousel-slider.fullwidth{
-    height:500px;
-}
-
-.Carousel-slider.fullwidth .slider-item{
-    height:480px;
-    line-height: 480px;
-    width: 100%;
-}
-
-.slider-wrapper{
-    overflow: hidden;
-    position: relative;
-    transform-style: preserve-3d;
-    transform-origin: 0 50%;
-    perspective: 800px !important;
-    
-}
-
-.slider-item{
-    box-shadow: 0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.12);
-    display: none;
-    left:0;
-    position: absolute;
-    text-align: center;
-    top:0;
-    cursor: pointer;
-    border: 5px solid #eeeeee;
-    aspect-ratio: 16/9;
-    width:50vw;
-    background-size: cover;
-}
-
-.indicators{
-    bottom:10%;
-    left:55%;
-    padding: 0;
-    list-style-type: none;
-    margin: 40px 0 0 -77px;
-    position: absolute;
-}
-
-.indicators li{
-    color: #255f8b;
-    float: left;
-    height:10px;
-    margin-right: 8px;
-    text-align: center;
-    width: 10px;
-}
-
-.indicators li:last-child{margin: 0;}
-.indicators a {
-    background:#2070a1;
-    border-radius: 8px;
-    display: inline-block;
-    height:10px;
-    width:10px;
-}
-
-.indicators .active a{
-    background: #e4e5e6;
-}
-
-.img1{background-image: url(imagine/Racecar.png);border-radius: 50px !important;}
-.img2{background-image: url(imagine/Printer.png);border-radius: 50px !important;}
-.img3{background-image: url(imagine/Elephant.png);border-radius: 50px !important;}
-.img4{background-image:url(imagine/Moonwalk.png);border-radius: 50px !important;}
-.img5{background-image: url(imagine/Wally.png);border-radius: 50px !important;}
-.img6{background-image: url(imagine/Samurai.png);border-radius: 50px !important;}
-
-
-/*Css phan thanh vien*/
-.member_title_card{
-    text-align: center;
-    padding:2% 0%;
-    font-family: "Cabin",sans-serif;
-    font-size:3em;
-}
-
-
-/*Css phan product lego*/
-.class_lego{
-    text-align: center;
-    font-family:'Poppins';
-    padding-top:2%
-}
-
-.product_1{
-    width:80vw;
-    display:flex;
-    left:10%;
-    background-color: rgb(255, 255, 255);
-    position: relative;
-    border-radius: 20px;
-    box-shadow: 10px 10px 5px rgb(119, 119, 119);
-    border:1px solid black;
-    text-decoration: none;
-    color:black;
-    margin-bottom:5%
-}
-
-.img{
-    width:35vw;
-    border-radius: 20px;
-}
-
-/*Css nội dung chi tiết*/
-
-.infor{
-    width:40vw;
-}
-
-.title_crane{
-    font-size:2em;
-    padding-left:10%;
-    position: relative;
-}
-
-.informations{
-    padding-left:5%;
-}
-
-.information{
-    display: flex;
-    width:40vw;
-    padding-top:3%
-}
-.name{
-    padding-left:0%;
-    list-style: none;
-    font-size:1.5em
-}
-
-.infor_2{
-    padding-top:0;
-    margin-left: 0;
-}
-
-.name_2{
-    padding-left:2%
-}
-
-.page_buttons{
-    display:flex;
-    position: relative;
-    justify-content: center;
-}
-
-.button{
-    border:1px solid black;
-    border-radius: 25px;
-    width:50px;
-    height:50px;
-    text-align: center;
-    margin-left:5%;
-    margin-bottom:2%;
-    font-size:2em;
-    font-weight: 700;
-    text-decoration: none;
-    color:black
-}
-
-.button:hover{
-    background-color: rgb(199, 199, 199);
-}
-
-/*Thông tin chi tiết sản phẩm*/
-
-
-.name_3{
-    list-style: none;
-    font-size:1.25em;
-    padding-top:2%
-}
-
-.space{
-    padding-left:8%;
-}
-
-.details{
-    text-align: center;
-    padding:2% 0px;
-    font-family: "Cabin",sans-serif;
-}
-
-.detail{
-    border: 1px solid black;
-    width:95vw;
-    left:2.5%;
-    position: relative;
-    border-radius: 20px;
-    margin-top: 1%;
-    margin-bottom:2%
-}
-
-.detail_1{
-    display: flex;
-    list-style: none;
-    font-size:1em;
-    text-align: justify;
-}
-
-.border_top_left{
-    border-top-left-radius: 20px;
-}
-
-.detail_title{
-    background-color: rgb(220, 219, 218);
-    width: 20vw;
-    border-bottom: 1px solid black;
-    justify-content: center;
-    display: flex;
-    align-items: center;
-    border-right: 1px solid black;
-    text-align: center;
-}
-
-.border_bottom_left{
-    border-bottom-left-radius: 20px;
-}
-
-.detail_infor{
-    width:75vw;border-bottom:1px solid black;padding:1%
-}
-/*Css footer*/
-.footer{
-    background-color: #173172;
-    width:100%;
-    height:50vh;
-    justify-content: space-between;
-    display: flex;
-    padding:3% 10%;
-    font-family: 'Poppins',sans-serif;
-    color:#fff
-}
-
-
-.link{
-    display: inline-block;
-}
-
-.links{
-    text-decoration: none;
-    color:#fff;
-    padding-top:15%;
-    width:100%;
-    font-size:1.5em;
-    display: block;
-}
-
-.links:hover{
-    text-shadow: 0 0 10px #fff,
-    0 0 20px rgb(255, 255, 255),
-    0 0 30px rgb(255, 255, 255),
-    0 0 40px rgb(255, 255, 255);
-}
-
-.members{
-    display:flex;
-    color: #fff;
-    width:100%;
-    gap: 15%;
-}
-
-.member_column{
-    padding: 0;
+* {
     margin: 0;
-    padding-top:5%
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.member_column li{
-    margin-bottom: 10px;
-    font-size: 1em;
-    list-style: none;
+body {
+    background-color: #08140A;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    color: #fff;
+}
+.member-sliders {
+  width: 100vw;
+  max-width: 100vw;
+  height: 400px;
+  margin: 0px auto;
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  justify-content: center;
+}
+
+.list-member {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  display: flex;
+  gap: 30px;                    /* Khoảng cách giữa các card */
+  transition: left 0.6s ease;
+  padding: 0 40px;              /* Thêm padding để không sát mép */
+}
+
+/* ==================== MỖI SLIDE ==================== */
+/* ==================== MỖI SLIDE ==================== */
+.member {
+  display: flex;
+  justify-content: center;
+  align-items: center;        /* hoặc center nếu muốn căn giữa dọc */
+  gap: 40px;
+  
+  min-width: 100vw;               /* ← Quan trọng: đặt chiều rộng cố định cho 1 card */
+  max-width: 100vw;               /* Giới hạn chiều rộng 1 card */
+  flex-shrink: 0;                 /* Không cho co lại */
+  
+  padding: 30px 20px;
+  box-sizing: border-box;
+  border-radius: 20px;
+}
+
+/* Ảnh */
+.member-img {
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+  border: 4px solid #379A3B
+}
+
+/* Phần mô tả */
+.member-desc {
+  max-width: 460px;
+}
+
+.member-roles {
+  display:flex;
+  gap:5px;
+}
+
+.member-name {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #fff;
+  line-height: 1.2;
+}
+
+.member-detail {
+  font-size: 15px;
+  line-height: 1.65;
+  color: #fff;
+
+}
+
+
+.buttons-members{
+  position: absolute;
+  top:45%;
+  left:5%;
+  width:90%;
+  display:flex;
+  justify-content: space-between;
+}
+
+.buttons-members button{
+  width:50px;
+  height:50px;
+  border-radius: 50%;
+  background-color:#fff5;
+  color:#fff;
+  border:none;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-weight:bold;
+}
+
+.dots-members{
+  position:absolute;
+  bottom:10px;
+  color: #fff;
+  left:0;
+  width:100%;
+  margin:0;
+  padding:0;
+  display:flex;
+  justify-content: center;
+}
+
+.dots-members li{
+  list-style:none;
+  width:10px;
+  height:10px;
+  background-color: #fff;
+  margin:20px;
+  border-radius:20px;
+  transition:1s;
+}
+
+.dots-members li.active{
+  width:30px;
 }

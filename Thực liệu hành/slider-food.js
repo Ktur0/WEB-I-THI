@@ -13,8 +13,8 @@ function goToSlide() {
     list.style.left = `-${items[active].offsetLeft}px`;
 
     // Cập nhật dots đúng (dựa trên slide thật, không phải active clone)
-    let realIndex = (active - 1) % 6;
-    if (realIndex < 0) realIndex = 5;        // ← Sửa lỗi này
+    let realIndex = (active - 1) % 5;
+    if (realIndex < 0) realIndex = 4;        // ← Sửa lỗi này
 
     dots.forEach(dot => dot.classList.remove('active'));
     if (dots[realIndex]) dots[realIndex].classList.add('active');
@@ -27,7 +27,7 @@ function goToSlide() {
 // Xử lý Infinite Loop mượt mà
 function handleInfiniteLoop() {
     // Next: từ slide clone cuối (6) → về slide 1
-    if (active === 7) {
+    if (active === 6) {
         setTimeout(() => {
             list.style.transition = "none";
             list.style.left = `-${items[1].offsetLeft}px`;
@@ -40,17 +40,17 @@ function handleInfiniteLoop() {
     if (active === 0) {
         setTimeout(() => {
             list.style.transition = "none";
-            list.style.left = `-${items[6].offsetLeft}px`;
-            active = 6;
+            list.style.left = `-${items[5].offsetLeft}px`;
+            active = 5;
             setTimeout(() => list.style.transition = "left 0.6s ease", 30);
         }, 620);
     }
 }
 
 // Khởi tạo
-window.onload = function() {
-    list     = document.querySelector('.member-sliders .list-member');
-    const originalItems = document.querySelectorAll('.member-sliders .list-member .member');
+window.addEventListener('load', function() {
+    list     = document.querySelector('.slider .list');
+    const originalItems = document.querySelectorAll('.slider .list .meals');
 
     // Tạo clone
     const firstClone = originalItems[0].cloneNode(true);
@@ -59,16 +59,15 @@ window.onload = function() {
     list.appendChild(firstClone);           // clone slide 1 ở cuối
     list.insertBefore(lastClone, originalItems[0]); // clone slide 5 ở đầu
 
-    items = document.querySelectorAll('.member-sliders .list-member .member');
-    dots  = document.querySelectorAll('.member-sliders .dots-members li');
-    prevBtn = document.getElementById('prev-member');
-    nextBtn = document.getElementById('next-member');
+    items = document.querySelectorAll('.slider .list .meals');
+    dots  = document.querySelectorAll('.slider .dots li');
+    prevBtn = document.getElementById('prev');
+    nextBtn = document.getElementById('next');
 
     console.log(`Tổng slides sau clone: ${items.length}`);
 
     // Nút Next
     nextBtn.onclick = function() {
-        console.log("Next clicked");
         active++;
         goToSlide();
         handleInfiniteLoop();
@@ -92,4 +91,4 @@ window.onload = function() {
     // Khởi tạo
     list.style.left = `-${items[1].offsetLeft}px`;
     dots[0].classList.add('active');
-};
+});
