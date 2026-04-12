@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>AI Đông y</title>
+    <link rel="stylesheet" href="style van chan.css">
+    <link rel="icon" href="../imagine/logo.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Imperial+Script&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap');
+        /*body*/
+        body{
+            background-color: #08140A;
+        }
+        /* header */
+        header{
+        width: 100vw;
+        height: 90px;
+        display: flex;
+        align-items: center;
+        }
+
+        .title {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-left:5%;
+        }
+
+        .title_name {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: 2px;
+        }
+
+        .thuc_lieu_hanh {
+            font-family: 'Be Vietnam Pro';
+            font-weight: 800;
+            font-size: 21px;
+            color: #FFFFFF;
+            margin: 0;
+            text-decoration: none;
+        }
+
+        .di_thuc {
+            font-family: 'Imperial Script';
+            font-size: 19px;
+            color: #FFFFFF;
+            margin: 0;
+            text-decoration: none;
+        }
+
+        /*Navigations*/
+        header .navs{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 50px;
+    gap: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    min-height: 44px;
+    margin-left:6%;
+    }
+    
+    /* Trang chủ */
+    header .nav_butt{
+    font-family: 'DVN - Cinzel Decorative';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 13px;
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 0px 0px;   
+    line-height: 1;
+    }
+
+        /* background img */
+        body .background-img{
+        position: absolute;
+        width: 100vw;
+        aspect-ratio: 16/7;
+        top:0;
+        left:0;
+        background: url(../imagine/thpt_thd_3.jpg);
+        background-size: cover;
+        z-index: -9999;
+        margin: 0;
+        padding:0;
+        }
+
+        /* background gradient */
+        body .background-black{
+        position: absolute;
+        top:0;
+        left:0;
+        width: 100vw;
+        height:100vh;
+        background: linear-gradient(
+                to bottom,
+                rgba(8, 20, 10, 0.75) 0%,      /* Trên cùng - sáng hơn một chút */
+                rgba(8, 20, 10, 0.85) 40%,
+                rgba(8, 20, 10, 0.95) 70%,
+                #08140A 100%                    /* Dưới cùng - tối đậm */
+            );
+        z-index: -9998;
+        margin:0;
+        padding:0
+        }
+
+
+
+        :root {
+            --bg: #e9f8ea;
+            --panel: #c4e7cc;
+            --panel-soft: #b5e1bb;
+            --text: #ffffff;
+            --text-muted: #dff2de;
+            --accent: #33a856;
+            --accent-2: #4ec16f;
+            --success: #2b8a3e;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+            color: var(--text);
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            padding: 16px;
+        }
+
+        .container {
+            width: min(100%, 980px);
+            height: min(82vh, 760px);
+            background: linear-gradient(145deg, var(--panel), #0f172a);
+            border-radius: 20px;
+            box-shadow: 0 24px 60px rgba(15, 23, 42, 0.46);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            border: 1px solid rgba(71, 85, 105, 0.35);
+        }
+
+        .sidebar {
+            background: rgba(15, 23, 42, 0.95);
+            color: var(--text);
+            padding: 24px 16px;
+            border-right: 1px solid rgba(71, 85, 105, 0.35);
+            overflow-y: auto;
+        }
+
+        .sidebar h2 {
+            margin: 0 0 10px;
+            font-size: 22px;
+        }
+
+        .sidebar p { color: var(--text-muted); font-size: 14px; line-height: 1.5; }
+
+        .main {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .chat {
+            flex: 1;
+            min-height: 340px;
+            padding: 14px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background: linear-gradient(180deg, #a5d9af 0%, #87c78b 100%);
+            border: 1px solid #6fac6a;
+            border-radius: 14px;
+            color: #ffffff;
+        }
+
+        .message { display: flex; align-items: flex-start; gap: 10px; }
+        .user { justify-content: flex-end; }
+
+        .bubble {
+            max-width: 86%;
+            padding: 12px 14px;
+            border-radius: 12px;
+            line-height: 1.5;
+            color: var(--text);
+            word-wrap: break-word;
+            white-space: pre-wrap;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+        }
+
+        .user .bubble { background: #1d4ed8; border-bottom-right-radius: 2px; }
+        .ai .bubble { background: #111827; border-bottom-left-radius: 2px; }
+
+        .avatar {
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            background: var(--accent);
+            display: grid;
+            place-items: center;
+            font-size: 13px;
+            color: #0f172a;
+            font-weight: 700;
+        }
+
+        .input-box {
+            display: flex;
+            gap: 10px;
+            padding: 16px;
+            background: rgba(15, 23, 42, 0.80);
+            border-top: 1px solid rgba(71, 85, 105, 0.35);
+            flex-shrink: 0;
+        }
+
+        .input-box input {
+            flex: 1;
+            padding: 12px 14px;
+            border-radius: 10px;
+            border: 1px solid rgba(148, 163, 184, 0.45);
+            background: #0f172a;
+            color: var(--text);
+            outline: none;
+            font-size: 15px;
+        }
+
+        .input-box input::placeholder { color: var(--text-muted); }
+
+        .input-box button {
+            padding: 12px 18px;
+            background: linear-gradient(100deg, var(--accent-2), var(--accent));
+            border: none;
+            border-radius: 10px;
+            color: #f8fff8;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.15s ease, opacity 0.15s ease;
+        }
+
+        .btn-start {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 14px;
+            background: linear-gradient(100deg, var(--accent-2), var(--accent));
+            border: 1px solid #1f8a34;
+            border-radius: 10px;
+            color: #fff;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.15s ease, opacity 0.15s ease;
+        }
+
+        .btn-start:hover,
+        .input-box button:hover { transform: translateY(-1px); opacity: 0.95; }
+
+        .input-box button:hover { transform: translateY(-1px); opacity: 0.95; }
+
+        .mode-buttons { display: flex; gap: 8px; margin-top: 8px; }
+        .mode-btn {
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.12);
+            color: var(--text);
+            padding: 8px 10px;
+            border-radius: 8px;
+            font-size: 13px;
+            cursor: pointer;
+        }
+        .mode-btn.active { background: var(--accent-2); color: #ffffff; border-color: transparent; }
+        #guidedQuestions {
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid rgba(148, 163, 184, 0.45);
+            background: #0f172a;
+            color: var(--text);
+            padding: 8px;
+            font-family: inherit;
+            resize: vertical;
+        }
+
+        @media(max-width: 900px) {
+            .container { grid-template-columns: 1fr; height: 100%; }
+            .sidebar { display: none; }
+            .bubble { max-width: 84%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-black"></div>
+    <div class="background-img"></div>
+    <header>
+        <div class="title"> 
+            <img src="../imagine/logo.png" style="
+            height: 58px;">
+            <div class="title_name" style="display: inline-block;" href="#">
+                <a class="thuc_lieu_hanh" href="#">THỰC LIỆU HÀNH</a>
+                <br>
+                <a class="di_thuc" href="#">Dĩ thực vi dược</a>
+            </div>
+        </div>
+        <div class="navs">
+                <a class="nav_butt" href="https://testapi-83t.pages.dev/">Trang chủ</a>
+                <a class="nav_butt" href="https://run-flask.onrender.com/tienthien">Tiên thiên</a>
+                <a class="nav_butt" href="https://run-flask.onrender.com/vanchan">Vấn - chẩn</a>
+                <a class="nav_butt" href="https://testapi-83t.pages.dev/">Thực phương</a>
+                <a class="nav_butt" href="#">Sức khỏe & Đời sống</a>
+        </div>
+    </header>
+<div class="main-container" style="display: flex;
+justify-content: center;
+align-items: center;
+width: 100%;
+max-width: 1200px;           /* giới hạn chiều rộng tối đa nếu muốn */
+margin: 0 auto;              /* căn giữa */
+padding: 20px 16px;          /* khoảng cách với viền màn hình */
+position: relative;
+z-index: 1;">
+<div class="container">
+
+    <div class="sidebar">
+        <h2>🧠 Vấn chẩn </h2>
+        <p>Mời bạn chọn chế độ:</p>
+        <div class="mode-buttons">
+            <button id="mode-user" class="mode-btn active" onclick="setMode('user')">Tự nhập triệu chứng</button>
+            <button id="mode-guided" class="mode-btn" onclick="setMode('guided')">AI hỏi đáp</button>
+        </div>
+        <div class="guided-info" style="margin-top: 16px;">
+            <p style="font-size:13px;color:#94a3b8;margin:6px 0;">Vấn chẩn thông tin sau:</p>
+            <ul style="font-size:12px;line-height:1.3;color:#cbd5e1;margin:0;padding-left:18px;">
+                <li>1. Mô tả triệu chứng chính</li>
+                <li>2. Kéo dài bao lâu</li>
+                <li>3. Đã dùng thuốc/phương pháp</li>
+                <li>4. Lần đầu hay tái phát</li>
+                <li>5. Có đau đớn kèm theo</li>
+                <li>6. Có triệu chứng khác</li>
+                <li>7. Bệnh nền</li>
+                <li>8. Tình trạng ăn</li>
+                <li>9. Ăn ngủ và năng lượng</li>
+                <li>10. Lời khuyên mong muốn</li>
+            </ul>
+            <button class="btn-start" onclick="startGuided()">Bắt đầu AI hỏi đáp</button>
+        </div>
+    </div>
+    <div class="main">
+
+        <div id="chat" class="chat"></div>
+
+        <div class="input-box">
+            <input id="input" placeholder="Nhập triệu chứng..." />
+            <button onclick="send()">Gửi</button>
+        </div>
+
+    </div>
+</div>
+</div>
+
+<script>
+const input = document.getElementById("input");
+const chat = document.getElementById("chat");
+const modeUserBtn = document.getElementById("mode-user");
+const modeGuidedBtn = document.getElementById("mode-guided");
+
+let mode = "user";
+const guidedQuestions = [
+    "Tình trạng này của bạn đã kéo dài bao lâu rồi? Mới bị gần đây (dưới 1 tuần) hay đã bị từ lâu/tái phát nhiều lần?",
+    "Bạn có nhận thấy sự thay đổi nào về môi trường hay thói quen trước khi phát bệnh không? Đi nắng, dầm mưa, ngủ máy lạnh quá lạnh, thức khuya, áp lực công việc, hay vừa ăn đồ sống lạnh/đồ quá cay nóng?",
+    "Bạn có nghĩ đến một nguyên nhân cụ thể nào dẫn đến tình trạng hiện tại không? (Ví dụ: Do thời tiết thay đổi, do ăn uống, hay do căng thẳng cảm xúc...)",
+    "Bạn có đang gặp các dấu hiệu nào khác đi kèm không?",
+    "Nếu có cảm giác đau (bụng, đầu, mình mẩy...), bạn bị đau ở vị trí nào và cảm giác đau ra sao?",
+    "Cơn đau của bạn thay đổi như thế nào theo thời gian và vận động?",
+    "Cảm giác nhiệt độ cơ thể bạn trong phần lớn thời gian gần đây như thế nào?",
+    "Bạn có cảm thấy nóng hoặc lạnh bất thường ở một vùng cụ thể nào không? (Ví dụ: Nóng ở lòng bàn tay chân, hay lạnh vùng bụng, lạnh dọc sống lưng...)",
+    "Thói quen uống nước của bạn hiện tại như thế nào? Không muốn uống nước, hay rất khát và muốn uống nước lạnh? Uống xong có cảm thấy hết khát không?",
+    "Tình trạng tiết mồ hôi của bạn gần đây như thế nào?",
+    "Bạn cảm thấy giọng nói và hơi thở của mình hiện tại như thế nào?",
+    "Trạng thái tinh thần và năng lượng của bạn gần đây ra sao?",
+    "Hãy quan sát nước tiểu và phân của bạn so với bình thường về màu sắc, tính chất và lượng?",
+    "Bạn có gặp khó khăn trong quá trình đi đại tiện hoặc tiểu tiện không?",
+    "Đặc điểm màu sắc, tính chất và lượng của các chất tiết khác? (nếu có như đờm, nước mũi...)",
+    "Hãy quan sát lưỡi của mình vào buổi sáng sáng sớm sau khi vệ sinh răng miệng và trước khi ăn: màu sắc, lớp rêu lưỡi, các đường nứt lưỡi…"
+];
+let questionIndex = 0;
+let onboarding = false;
+let onboardingAnswers = [];
+input.addEventListener("keypress", function(e) {
+    if (e.key === "Enter") send();
+});
+
+window.addEventListener("load", () => {
+    addMessage("Chào mừng bạn đến với AI tư vấn Đông y! Chọn chế độ để bắt đầu.", "ai");
+    updateModeUI();
+});
+
+function setMode(newMode) {
+    mode = newMode;
+    onboarding = false;
+    questionIndex = 0;
+    onboardingAnswers = [];
+    clearChat();
+    input.placeholder = mode === "user" ? "Nhập triệu chứng..." : "Nhấp Bắt đầu AI hỏi đáp...";
+    updateModeUI();
+    addMessage(mode === "user" ? "Chế độ tự nhập: nhập triệu chứng và gửi." : "Chế độ AI hỏi đáp: nhấn Bắt đầu và trả lời lần lượt.", "ai");
+}
+
+function clearChat() {
+    chat.innerHTML = "";
+}
+
+function updateModeUI() {
+    modeUserBtn.classList.toggle("active", mode === "user");
+    modeGuidedBtn.classList.toggle("active", mode === "guided");
+}
+
+function startGuided() {
+    if (mode !== "guided") return;
+    onboarding = true;
+    questionIndex = 0;
+    onboardingAnswers = [];
+    addMessage("Bắt đầu AI hỏi đáp. Hãy trả lời từng câu một.", "ai");
+    askNextQuestion();
+}
+
+function askNextQuestion() {
+    if (!onboarding) return;
+    if (questionIndex < guidedQuestions.length) {
+        const currentQuestionNum = questionIndex + 1;
+        const counter = `[Câu ${currentQuestionNum}/${guidedQuestions.length}]`;
+        const questionText = counter + " " + guidedQuestions[questionIndex];
+        addMessage(questionText, "ai");
+        input.placeholder = guidedQuestions[questionIndex];
+        input.focus();
+    } else {
+        onboarding = false;
+        input.placeholder = "Bạn có thể nhập câu hỏi phụ hoặc thử lại...";
+        const summary = guidedQuestions.map((q, idx) => 
+            `${q}\n→ ${onboardingAnswers[idx] || "(không trả lời)"}`
+        ).join("\n\n");
+
+        sendToServer(`Dữ liệu vấn chẩn:\n\n${summary}`);
+    }
+}
+
+async function send() {
+    const msg = input.value.trim();
+    if (!msg) return;
+
+    addMessage(msg, "user");
+    input.value = "";
+
+    if (mode === "guided" && onboarding) {
+        onboardingAnswers.push(msg);
+        questionIndex += 1;
+        setTimeout(askNextQuestion, 300);
+        return;
+    }
+
+    if (mode === "user") {
+        sendToServer(msg);
+        return;
+    }
+
+    if (mode === "guided" && !onboarding) {
+        sendToServer(msg);
+        return;
+    }
+}
+
+async function sendToServer(msg) {
+    const loading = addMessage("Đang phân tích...", "ai");
+
+    try {
+        const res = await fetch("/chat", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({message: msg})
+        });
+
+        const data = await res.json();
+        loading.querySelector(".bubble").innerHTML = data.reply;
+
+    } catch (err) {
+        loading.querySelector(".bubble").innerHTML = "Lỗi kết nối. Vui lòng thử lại.";
+        console.error(err);
+    }
+}
+
+function addMessage(text, type) {
+    const div = document.createElement("div");
+    div.className = "message " + type;
+
+    const avatar = document.createElement("div");
+    avatar.className = "avatar";
+    avatar.innerText = type === "user" ? "B" : "AI";
+
+    const bubble = document.createElement("div");
+    bubble.className = "bubble";
+    bubble.innerHTML = text;
+
+    if (type === "user") {
+        div.appendChild(bubble);
+        div.appendChild(avatar);
+    } else {
+        div.appendChild(avatar);
+        div.appendChild(bubble);
+    }
+
+    chat.appendChild(div);
+    chat.scrollTop = chat.scrollHeight;
+
+    return div;
+}
+</script>
+
+</body>
+</html>

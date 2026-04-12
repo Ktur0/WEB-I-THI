@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="vi">
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="thucphuongmain.css">
+        <link rel="stylesheet" href="fooddetail.css">
         <title>Thực liệu hành</title>
         <link rel="icon" href="imagine/stem_icon.png">
     </head>
@@ -30,66 +30,18 @@
             <div class="food-main">
                 <div class="food-detail">
                     <p class="food-title">THỊT LỢN XÀO HÀNH GỪNG</p>
-                    <p class="food-describe">Thịt lợn xào hành gừng là một món ăn phù hợp cho người đang bị tiêu hóa kém, sợ lạnh.</p>
-                    <a class="find-more" href="#" onclick="sendFoodRequest('thịt lợn xào hành gừng')">
-                        Tìm hiểu thêm
-                    </a>
+                    <p class="food-describe">Món ăn này kết hợp thịt heo giàu protein với hành và gừng có tính ấm, giúp tăng cường sức khỏe, cải thiện tuần hoàn máu và hỗ trợ tiêu hóa. Đây là một lựa chọn thực phẩm bổ dưỡng, phù hợp cho những người muốn duy trì sức khỏe tốt và phòng ngừa bệnh tật.</p>
                 </div>
                 <img class="food-img" src="imagine/thịt heo xào gừng.png">
             </div>
             <hr class="line">
-            <h1 class="thuc-phuong-title">THỰC PHƯƠNG</h1>
-            <div class="food-menu" style="display: flex;">
-                <div class="food-type">
-                    <div class="food-type-item active" id="food-type-item" data-category="cay">
-                        <img src="imagine/spicy.png" class="spicy" >
-                        <p class="food-type-name">
-                            Món cay
-                        </p>
-                    </div>
-                    <div class="food-type-item" id="food-type-item" data-category="chua">
-                        <img src="imagine/lemon.png" class="spicy" >
-                        <p class="food-type-name">
-                            Món chua
-                        </p>
-                    </div>
-                    <div class="food-type-item" id="food-type-item" data-category="man">
-                        <img src="imagine/salt.png" class="spicy" >
-                        <p class="food-type-name">
-                            Món mặn
-                        </p>
-                    </div>
-                    <div class="food-type-item" id="food-type-item"  data-category="dang">
-                        <img src="imagine/bitter.png" class="spicy">
-                        <p class="food-type-name">
-                            Món đắng
-                        </p>
-                    </div>
-                    <div class="food-type-item" id="food-type-item" data-category="ngot">
-                        <img src="imagine/sweet.png" class="spicy" >
-                        <p class="food-type-name">
-                            Món ngọt
-                        </p>
-                    </div>
+            <div class="more-infor">
+                <h1 class="more-infor-title">Thông tin chi tiết</h1>
+                <div class="infor-table">
+                    
                 </div>
-                <div class="food-slider">
-                    <div class="food-list" id="food-list">
-                        
-                    </div>
-                    <div class="buttons">
-                        <button id="prev"><</button>
-                        <button id="next">></button>
-                    </div>
-                    <ul class="dots" id="dots">
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                    </ul>
-                </div>
-                
             </div>
+            
         </main>
         <footer style="position: absolute;right:0;background-color: #1A5237;left:0;width:100vw;display:grid;align-items: center;margin-top:50px">
             <div class="nonecopyright" style="display:flex;align-items: center;gap:30vw;margin-top:20px;justify-content: center;">
@@ -120,6 +72,5 @@
             <hr style="width:60vw;margin-top:20px;">
             <p class="footer-detail-copy">Copyright © 2026 Thực liệu hành. All rights reserved.</p>
         </footer>
-        <script src="render.js"></script>
-        
+        <script src="render_food_detail.js"></script>
     </body>
