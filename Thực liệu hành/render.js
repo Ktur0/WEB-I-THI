@@ -1,25 +1,6 @@
 // ==================== THỰC PHƯƠNG SLIDER - THEO THỂ LOẠI ====================
 
-const data = {
-    cay: [
-        { name: "Thịt lợn xào hành gừng", desc: "Món ăn này kết hợp thịt heo giàu protein với hành và gừng có tính ấm...", img: "imagine/thịt lợn xào gừng nền.png" },
-        { name: "Cá lóc kho tiêu", desc: "Món ăn này giúp kích thích vị giác và tăng cường hấp thu dưỡng chất.", img: "imagine/ga-xao-sa-ot.jpg" },
-        { name: "Cá basa chiên giòn", desc: "Cá basa tẩm bột chiên giòn ăn kèm tương ớt.", img: "imagine/ca-basa-chien.jpg" },
-        { name: "Bò xào tiêu đen", desc: "Thịt bò mềm thơm với vị tiêu cay đặc trưng.", img: "imagine/bo-xao-tieu-den.jpg" },
-        { name: "Tôm rim cay", desc: "Tôm tươi rim với ớt và gia vị cay.", img: "imagine/tom-rim-cay.jpg" }
-    ],
-    chua: [
-        { name: "Canh chua cá lóc", desc: "Món canh chua thanh mát, giàu vitamin từ rau củ.", img: "imagine/canh-chua-ca-loc.jpg" },
-        // Thêm 4 món khác tương tự
-        { name: "Canh chua tôm", desc: "...", img: "" },
-        { name: "Salad chua ngọt", desc: "...", img: "" },
-        { name: "Gỏi cuốn chua", desc: "...", img: "" },
-        { name: "Cá kho chua ngọt", desc: "...", img: "" }
-    ],
-    man: [ /* thêm 5 món mặn */ ],
-    dang: [ /* thêm 5 món đắng */ ],
-    ngot: [ /* thêm 5 món ngọt */ ]
-};
+const API_URL = "https://script.google.com/macros/s/AKfycbw-0UrJzRtcTiNDeIEPrXptf4mH-t32WqBZfi2ywoqItle1VJiNLcV2_L2yaCAdJUH2/exec";
 
 // ==================== BIẾN TOÀN CỤC ====================
 let currentCategory = "cay";
@@ -27,28 +8,64 @@ let active = 1;
 let list, items, dots, prevBtn, nextBtn;
 let isTransitioning = false;
 
-// ==================== RENDER DANH SÁCH MÓN ĂN ====================
-function renderMeals(category) {
-    currentCategory = category;
+// ==================== LẤY DỮ LIỆU TỪ GOOGLE SHEET ====================
+async function loadFoodsByCategory(category) {
+    try {
+        const response = await fetch(`${API_URL}?category=${category}`);
+        const result = await response.json();
+
+        if (result.success) {
+            return result.data;           // Trả về mảng món ăn từ Sheet
+        } else {
+            console.error("Lỗi từ Sheet:", result.error);
+            return [];
+        }
+    } catch (error) {
+        console.error("Không thể kết nối với Google Sheet:", error);
+        return [];
+    }
+}
+
+async function renderMeals(category) {
+    currentCategory = category.toLowerCase();
 
     const foodList = document.getElementById('food-list');
-    foodList.innerHTML = '';   // xóa sạch
+    foodList.innerHTML = '';
 
-    data[category].forEach(meal => {
+    const foods = await loadFoodsByCategory(category);
+
+    console.log(`🔍 Loaded ${foods.length} items for category "${category}"`, foods); // ← giúp debug
+
+    if (foods.length === 0) {
+        foodList.innerHTML = `<p style="padding: 60px 20px; text-align: center; color: #ff9800;">
+            Không có dữ liệu cho loại "${category}"<br>
+            <small>Kiểm tra tên sheet và Deploy lại Apps Script</small>
+        </p>`;
+        return;
+    }
+
+    foods.forEach((meal, index) => {
+        const tenMon = meal.name || meal.tenmon || "Không có tên";
+        const moTa   = meal.desc || meal.mota || meal.describe || "Đang cập nhật mô tả...";
+        const hinhAnh = meal.img || meal.hinhanh || meal.image || "imagine/default.jpg";
+        const idmeal = meal.id || meal.idmeal || meal.id || "meal" + index;
+
         const mealHTML = `
             <div class="meal">
-                <img src="${meal.img}" class="food-list-img" alt="${meal.name}">
+                <img src="${hinhAnh}" class="food-list-img" alt="${tenMon}">
                 <div class="meal-title">
-                    <p class="meal-name">${meal.name}</p>
-                    <p class="meal-describe">${meal.desc}</p>
-                    <a class="find-more-meal" href="food_detail.html?name=${encodeURIComponent(meal.name)}">Tìm hiểu thêm</a>
+                    <p class="meal-name">${tenMon}</p>
+                    <p class="meal-describe">${moTa}</p>
+                    <a class="find-more-meal" 
+                       href="food_detail.html?name=${encodeURIComponent(tenMon)}&category=${encodeURIComponent(currentCategory)}&id=${encodeURIComponent(idmeal)}">
+                        Tìm hiểu thêm
+                    </a>
                 </div>
             </div>
         `;
         foodList.innerHTML += mealHTML;
     });
 
-    // Sau khi render xong → khởi tạo lại slider hoàn toàn
     initSlider();
 }
 
@@ -124,9 +141,14 @@ function goToSlide() {
     list.style.transition = "left 0.6s ease";
     list.style.left = `-${items[active].offsetLeft}px`;
 
-    const realIndex = (active - 1) % (items.length - 2); // trừ 2 clone
+    // === SỬA Ở ĐÂY ===
+    let realIndex = (active - 1) % (items.length - 2);
+    if (realIndex < 0) realIndex += (items.length - 2);   // Xử lý số âm
+
     dots.forEach(dot => dot.classList.remove('active'));
-    if (dots[realIndex]) dots[realIndex].classList.add('active');
+    if (dots[realIndex]) {
+        dots[realIndex].classList.add('active');
+    }
 
     setTimeout(() => isTransitioning = false, 650);
 }
@@ -154,18 +176,19 @@ function handleInfiniteLoop() {
 }
 
 // ==================== DOMContentLoaded ====================
-document.addEventListener('DOMContentLoaded', () => {
-    // Click category
-    document.querySelectorAll('.food-type-item').forEach(item => {
-        item.addEventListener('click', () => {
-            document.querySelectorAll('.food-type-item').forEach(el => el.classList.remove('active'));
-            item.classList.add('active');
+// Trong DOMContentLoaded
+document.querySelectorAll('.food-type-item').forEach(item => {
+    item.addEventListener('click', async () => {
+        document.querySelectorAll('.food-type-item').forEach(el => el.classList.remove('active'));
+        item.classList.add('active');
 
-            const category = item.getAttribute('data-category');
-            renderMeals(category);
-        });
+        let category = item.getAttribute('data-category');
+        if (category) {
+            category = category.toLowerCase();        // ← quan trọng
+            await renderMeals(category);
+        }
     });
-
-    // Load mặc định
-    renderMeals('cay');   // sẽ tự gọi initSlider() bên trong
 });
+
+// Load mặc định
+renderMeals("cay");;

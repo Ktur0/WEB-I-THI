@@ -47,48 +47,22 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 // ==================== RENDER PHẦN TIÊU ĐỀ + ẢNH + MÔ TẢ ====================
 function renderMainInfo(food) {
+    // Dùng displayname và chuyển thành UPPERCASE
     const displayName = (food.displayname || food.title || "KHÔNG CÓ TÊN").toUpperCase();
 
+    // Title & Display Name
     const titleEl = document.querySelector('.food-title');
-    titleEl.innerHTML = displayName;
+    titleEl.innerHTML = displayName;        // ← Đã uppercase
 
+    // Mô tả ngắn
     const descEl = document.querySelector('.food-describe');
-    descEl.textContent = food.describe || food.mota || "Đang cập nhật mô tả...";
+    descEl.textContent = food.mota || food.describe || "Đang cập nhật mô tả...";
 
-    // ==================== XỬ LÝ ẢNH ====================
+    // Ảnh
     const imgEl = document.querySelector('.food-img');
     if (imgEl) {
-        let imageUrl = "imagine/default.jpg";
-
-        let rawImg = (food.img || food.hinhanh || "").toString().trim();
-
-        if (rawImg) {
-            // Loại bỏ khoảng trắng thừa
-            rawImg = rawImg.replace(/\s+/g, '');
-
-            // Nếu là link Drive đầy đủ
-            if (rawImg.includes("drive.google.com")) {
-                const match = rawImg.match(/id=([a-zA-Z0-9_-]+)/i);
-                if (match && match[1]) {
-                    imageUrl = `https://drive.google.com/uc?id=${match[1]}`;
-                } else {
-                    imageUrl = rawImg;
-                }
-            } 
-            // Nếu chỉ là File ID
-            else if (/^[a-zA-Z0-9_-]{20,}$/.test(rawImg)) {
-                imageUrl = `https://drive.google.com/uc?id=${rawImg}`;
-            } 
-            else {
-                imageUrl = rawImg;
-            }
-        }
-
-        imgEl.src = imageUrl;
+        imgEl.src = food.hinhanh || food.img || "imagine/default.jpg";
         imgEl.alt = displayName;
-
-        // Debug
-        console.log("Đang load ảnh từ:", imageUrl);
     }
 }
 
